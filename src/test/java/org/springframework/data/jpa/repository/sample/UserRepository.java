@@ -15,6 +15,7 @@
  */
 package org.springframework.data.jpa.repository.sample;
 
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -611,6 +612,14 @@ public interface UserRepository
 
 	// DATAJPA-1303
 	Page<User> findByAttributesIgnoreCaseIn(Pageable pageable, String... attributes);
+
+	@Query(value = "select createdAt from SD_User", nativeQuery = true)
+	List<Java8DateTimeInterface> findTimestampDtoByNativeQuery();
+
+	interface Java8DateTimeInterface {
+
+		LocalDateTime getCreatedAt();
+	}
 
 	interface RolesAndFirstname {
 

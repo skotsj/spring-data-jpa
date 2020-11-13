@@ -288,4 +288,9 @@ public class UserRepositoryFinderTests {
 	void executesNamedQueryWithConstructorExpression() {
 		userRepository.findByNamedQueryWithConstructorExpression();
 	}
+
+	@Test
+	void returnProjectedTimestampNativeQuery() {
+		assertThat(userRepository.findTimestampDtoByNativeQuery().get(0).getCreatedAt()).isNotNull();
+	}
 }
